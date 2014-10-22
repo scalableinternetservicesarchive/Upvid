@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022052311) do
+ActiveRecord::Schema.define(version: 20141022074832) do
+
+  create_table "users", force: true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users_videos", id: false, force: true do |t|
+    t.integer "video_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  add_index "users_videos", ["user_id", "video_id"], name: "index_users_videos_on_user_id_and_video_id"
+  add_index "users_videos", ["video_id", "user_id"], name: "index_users_videos_on_video_id_and_user_id"
 
   create_table "videos", force: true do |t|
     t.string   "title"
