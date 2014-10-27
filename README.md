@@ -13,4 +13,4 @@ Asbjørn Steinskog ([@assios](https://github.com/assios))
 ![assios photo](https://avatars3.githubusercontent.com/u/1413265?v=2&s=140)
 
 Emil D. Grønnbeck ([@groennbeck](https://github.com/groennbeck))
-![groennbeck photo](https://avatars1.githubusercontent.com/u/947662?v=2&s=460)
+![groennbeck photo](https://avatars1.githubusercontent.com/u/947662?v=2&s=140)
