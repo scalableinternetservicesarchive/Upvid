@@ -17,6 +17,7 @@
         <td><%= link_to 'Show', video %></td>
         <td><%= link_to 'Edit', edit_video_path(video) %></td>
         <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Stream', stream_path(video) %></td>
       </tr>
     <% end %>
   </tbody>
