@@ -4,6 +4,11 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
+
+
+
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+  config.middleware.insert 0, Rack::Sendfile, config.action_dispatch.x_sendfile_header 
   config.cache_classes = false
 
   # Do not eager load code on boot.
