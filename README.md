@@ -29,3 +29,11 @@ Magnus Ohm ([@magnusao] (https://github.com/magnusao))
 
 1. run rake nginx:build_config
 2. run rake nginx:restart
+
+
+
+###Usage as of OCT 27
+
+1. upload at localhost:8080/videos (no security)
+2. watch videos at localhost/videos/id/stream
+
