@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141022074832) do
   create_table "videos", force: true do |t|
     t.string   "title"
     t.string   "category"
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
