@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
   resources :users
 
   resources :videos
+
+  root 'videos#index'
 
   get 'videos/:id/stream', to: 'videos#stream'
 
