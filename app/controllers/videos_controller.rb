@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_video, only: [:show, :edit, :update, :destroy, :stream]
 
   # GET /videos
   # GET /videos.json
@@ -24,8 +24,12 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    @video = Video.new(video_params)
+    directory = "public/videos"
+    name = params[:upload][:file].original_filename
+    path = File.join(directory, name)
+    File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
 
+    @video = Video.new(video_params.merge(:location => path))
     respond_to do |format|
       if @video.save
         format.html { redirect_to @video, notice: 'Video was successfully created.' }
@@ -59,6 +63,14 @@ class VideosController < ApplicationController
       format.html { redirect_to videos_url, notice: 'Video was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def stream
+    send_file @video.location,
+      type: 'video/mp4', 
+      disposition: 'inline',
+      stream: true,
+      buffer_size: 4096
   end
 
   private
