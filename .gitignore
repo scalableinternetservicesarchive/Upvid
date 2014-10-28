@@ -30,3 +30,4 @@ config/secrets.yml
 bower.json
 
 upvid.nginx.conf
+/public/videos/*
