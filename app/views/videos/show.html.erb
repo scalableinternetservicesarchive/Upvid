@@ -10,5 +10,18 @@
   <%= @video.category %>
 </p>
 
+
+<video src=<%= stream_path(@video) %> controls width = 500></video>
+
+<div>
+    Comments
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+</div>
+
+
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
