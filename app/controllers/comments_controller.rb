@@ -21,9 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user = current_user
     @comment.save
-    #Redirects to ID 1 temporarily
-    @video = Video.find(1)
-    redirect_to @video
+    redirect_to @comment
   end
 
   def update
