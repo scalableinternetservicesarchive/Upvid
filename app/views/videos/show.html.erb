@@ -15,12 +15,12 @@
 
 <div>
     Comments
-    </br>
-    </br>
-    </br>
-    </br>
-    </br>
+    <%= render 'comments/form', :locals => {:video => @video}%>
 </div>
+
+<% @video.comments.each do |comment| %>
+  <%= comment.message %>
+<%end %>
 
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
