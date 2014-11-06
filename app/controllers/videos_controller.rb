@@ -31,6 +31,7 @@ class VideosController < ApplicationController
     File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
 
     @video = Video.new(video_params.merge(:location => path))
+    @video.user = current_user
     respond_to do |format|
       if @video.save
         format.html { redirect_to @video, notice: 'Video was successfully created.' }

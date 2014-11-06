@@ -15,9 +15,11 @@
         <td><%= video.title %></td>
         <td><%= video.category %></td>
         <td><%= link_to 'Show', video %></td>
+        <%if video.user == current_user%>
         <td><%= link_to 'Edit', edit_video_path(video) %></td>
         <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <td><%= link_to 'Stream', stream_path(video) %></td>
+        <%end%>
+        <td><%= link_to 'Stream', stream_path(video) %></td>
       </tr>
     <% end %>
   </tbody>

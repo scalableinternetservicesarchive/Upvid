@@ -46,3 +46,4 @@ gem 'spring',        group: :development
 gem "paperclip", "~> 4.2"
 
 gem 'therubyracer',  platforms: :ruby
+
