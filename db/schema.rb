@@ -54,8 +54,11 @@ ActiveRecord::Schema.define(version: 20141105235322) do
     t.string   "title"
     t.string   "category"
     t.string   "location"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "videos", ["user_id"], name: "index_videos_on_user_id"
 
 end
