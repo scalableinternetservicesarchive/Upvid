@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Title</th>
       <th>Category</th>
       <th colspan="3"></th>
@@ -12,6 +13,7 @@
   <tbody>
     <% @videos.each do |video| %>
       <tr>
+        <td><%= video.user.email %></td>
         <td><%= video.title %></td>
         <td><%= video.category %></td>
         <td><%= link_to 'Show', video %></td>
