@@ -11,6 +11,7 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
+        <td><%= comment.user.email %></td>
         <td><%= comment.message %></td>
         <td><%= link_to 'Show', comment %></td>
         <%if comment.user == current_user%>

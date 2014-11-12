@@ -19,7 +19,8 @@
 </div>
 
 <% @video.comments.each do |comment| %>
-  <%= comment.message %>
+<b><%= comment.user.email %></b><br>
+  <%= comment.message %><br><br>
 <%end %>
 
 
