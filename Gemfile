@@ -43,6 +43,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'multi_json', '1.7.8'
+
 gem "paperclip", "~> 4.2"
 
 gem 'therubyracer',  platforms: :ruby
