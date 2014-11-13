@@ -3,7 +3,12 @@
 <h2>Movies</h2>
 
 <% @videos.each do |video| %>
-<%if video.user == @user%>
-<td><%= link_to video.title, video %></td>
+	<%if video.user == @user%>
+		<td><%= link_to video.title, video %></td>
+	<%end %>
 <%end %>
-<%end %>
+<br><br>
+
+<% if @user == current_user %>
+	<%= link_to "Edit User", edit_user_registration_path, :class => 'h2' %>
+<% end %>

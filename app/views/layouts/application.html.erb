@@ -27,7 +27,7 @@
             <li><a href="/videos/new">Upload video</a></li>
 
             <% if user_signed_in? %>
-              <li><%= link_to current_user.email, edit_user_registration_path, :class => 'navbar-link' %></li>
+              <li><%= link_to current_user.email, current_user, :class => 'navbar-link' %></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbarr-link'  %></li>
             <% else %>
               <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
