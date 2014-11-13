@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'videos/stream/:id' => 'videos#stream', :as => :stream
 
+  get 'users/:id' => 'users#show'
+
   root 'videos#index'
 
 
