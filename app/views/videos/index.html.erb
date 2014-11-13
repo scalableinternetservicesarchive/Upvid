@@ -13,7 +13,7 @@
   <tbody>
     <% @videos.each do |video| %>
       <tr>
-        <td><%= video.user.email %></td>
+        <td><%= link_to video.user.email, video.user %></td>
         <td><%= video.title %></td>
         <td><%= video.category %></td>
         <td><%= link_to 'Show', video %></td>
