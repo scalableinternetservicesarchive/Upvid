@@ -25,7 +25,8 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    directory = "app/public/videos"
+    directory = Rails.root.join('public/videos')
+    puts directory
     name = params[:upload][:file].original_filename
     path = File.join(directory, name)
     File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
