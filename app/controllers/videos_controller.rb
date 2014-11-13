@@ -25,7 +25,7 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    directory = "public/videos"
+    directory = "app/public/videos"
     name = params[:upload][:file].original_filename
     path = File.join(directory, name)
     File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
@@ -69,7 +69,7 @@ class VideosController < ApplicationController
 
   def stream
     send_file @video.location,
-      type: 'video/mp4', 
+      type: 'video/mp4',
       disposition: 'inline',
       stream: true,
       buffer_size: 4096
