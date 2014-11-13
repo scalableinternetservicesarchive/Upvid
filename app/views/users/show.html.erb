@@ -9,6 +9,14 @@
 <%end %>
 <br><br>
 
+<h2>Last comments</h2>
+<% @comments.each do |comment| %>
+	<%if comment.user == @user%>
+		<td><%= @user.email %> commented "<%= comment.message %>" on the movie <%= link_to comment.video.title, comment.video %> </td><br>
+	<%end %>
+<%end %>
+<br><br>
+
 <% if @user == current_user %>
 	<%= link_to "Edit User", edit_user_registration_path, :class => 'h2' %>
 <% end %>
