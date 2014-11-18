@@ -1,28 +1,18 @@
 <h1>Listing videos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @videos.each do |video| %>
-      <tr>
-        <td><%= link_to video.user.email, video.user %></td>
-        <td><%= video.title %></td>
-        <td><%= video.category %></td>
-        <td><%= link_to 'Show', video %></td>
-        <%if video.user == current_user%>
-        <td><%= link_to 'Edit', edit_video_path(video) %></td>
-        <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%end%>
-        <td><%= link_to 'Stream', stream_path(video) %></td>
-      </tr>
+      <div class="column">
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail">
+          <h3><%= link_to video.title, video %> by <%= link_to video.user.email, video.user %></h3>
+            <img src="/assets/images/thumbnail1.jpg" alt="...">
+            <div class="caption">
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
+
   </tbody>
 </table>

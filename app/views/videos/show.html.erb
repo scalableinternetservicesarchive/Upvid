@@ -23,11 +23,7 @@
     <%= render 'comments/form', :locals => {:video => @video}%>
 </div>
 
-<% @video.comments.each do |comment| %>
+<% @video.comments.reverse.each do |comment| %>
 <b><%= comment.user.email %></b><br>
   <%= comment.message %><br><br>
 <%end %>
-
-
-<%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %>
