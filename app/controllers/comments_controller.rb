@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new
+
   end
 
   def edit
@@ -21,7 +22,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user = current_user
     @comment.save
-    redirect_to @comment
+    redirect_to @comment.video
   end
 
   def update
