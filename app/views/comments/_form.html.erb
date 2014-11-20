@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :message %><br>
+  <br>
     <%= f.text_area :message %>
   </div>
+
   <div class="field">
     <%= f.hidden_field :video_id, :value => params[:id]%>
   </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Comment", :class => "btn btn-submit"%>
   </div>
 <% end %>
