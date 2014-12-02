@@ -35,31 +35,44 @@
 </div>
 
 <% @video.comments.reverse.each do |comment| %>
+
   <% t = Time.now - comment.created_at 
      mm, ss = t.divmod(60)
      hh, mm = mm.divmod(60)
      dd, hh = hh.divmod(24)
 
-     s = ""
+     minute = 60
+     hour = 60 * minute
+     month = dd * 30
+     year = month * 12
 
-     if (dd!=0)
-      s+="%d days, " % [dd]
-     end
-
-     if (hh!=0)
-      s+="%d hours, " % [hh]
-     end
-
-     if (mm!=0)
-      s += "%d minutes" % [mm]
-     end
-
-     if (s=="")
-      s = "%d seconds" % [ss]
+     if (t < minute)
+      s = "%d seconds ago" % [ss]
+     elsif (t < 2 * minute)
+      s = "a minute ago"
+     elsif (t < 60 * minute)
+      s = "%d minutes ago" % [mm]
+     elsif (t < 2 * hour)
+      s = "an hour ago"
+     elsif (t < 24 * hour)
+      s = "%d hours ago" % [hh]
+     elsif (t < 48 * hour)
+      s = "yesterday"
+     elsif (t < 12 * month)
+      if (month > 1)
+        s = "%d months ago" % months
+      else
+        s = "a month ago"
+      end
      else
-      s += " and %d seconds" % [ss]
+      if (year > 1)
+        s = "%d years ago" % year
+      else
+        s = "one year ago"
+      end
      end
   %>
-  <b><%= comment.user.email %> <%= s %> ago</b><br>
+
+  <b><%= comment.user.email %> <%= s %></b><br>
     <%= comment.message %><br><br>
 <%end %>
