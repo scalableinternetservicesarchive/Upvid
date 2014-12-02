@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>User:</strong>
@@ -15,6 +15,10 @@
   <%= @video.category %>
 </p>
 
+<% if current_user %>
+  <%= link_to 'Favorite',   favorite_video_path(@video, type: "favorite"), method: :put %>
+  <%= link_to 'Unfavorite', favorite_video_path(@video, type: "unfavorite"), method: :put %>
+<% end %>
 
 <video src=<%= stream_path(@video) %> controls width = 500></video>
 <br>

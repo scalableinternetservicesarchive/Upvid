@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   resources :videos
 
+  resources :videos do
+    put :favorite, on: :member
+  end
+
   get 'videos/stream/:id' => 'videos#stream', :as => :stream
 
   get 'users/:id' => 'users#show'

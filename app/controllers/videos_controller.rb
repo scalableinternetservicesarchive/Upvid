@@ -76,6 +76,24 @@ class VideosController < ApplicationController
       buffer_size: 4096
   end
 
+  # Add and remove favorite videos
+  # for user
+  def favorite
+    set_video
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @video
+      redirect_to :back, notice: 'You favorited "' + @video.title + "\"."
+    
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@video)
+      redirect_to :back, notice: 'You removed "' + @video.title + "\" from favorites."
+
+    else
+      redirect_to :back, notice: 'Nothing happened.'
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
