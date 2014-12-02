@@ -15,17 +15,20 @@
   <%= @video.category %>
 </p>
 
-<% if current_user %>
-  <%= link_to 'Favorite',   favorite_video_path(@video, type: "favorite"), method: :put %>
-  <%= link_to 'Unfavorite', favorite_video_path(@video, type: "unfavorite"), method: :put %>
-<% end %>
-
 <video src=<%= stream_path(@video) %> controls width = 500></video>
 <br>
 <%if @video.user == current_user%>
   <td><%= link_to 'Edit', edit_video_path(@video) %></td>
   <td><%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 <%end%>
+
+<% if current_user %>
+  <% if current_user.favorites.include?(@video) %>
+    <%= link_to 'Unfavorite', favorite_video_path(@video, type: "unfavorite"), method: :put, :class => "btn btn-danger" %>
+  <% else %>
+    <%= link_to 'Favorite',   favorite_video_path(@video, type: "favorite"), method: :put, :class => "btn btn-warning" %>
+  <% end %>
+<% end %>
 
 <div>
     <%= render 'comments/form', :locals => {:video => @video}%>
