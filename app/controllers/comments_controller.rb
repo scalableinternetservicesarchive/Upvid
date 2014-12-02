@@ -21,7 +21,6 @@ class CommentsController < ApplicationController
     puts "params ", comment_params
     @comment = Comment.new(comment_params)
     @comment.user = current_user
-    @comment.created_at = Time.now
     @comment.save
     redirect_to @comment.video
     
