@@ -4,7 +4,7 @@
 
 <% @videos.each do |video| %>
 	<%if video.user == @user%>
-		<td><%= link_to video.title, video %></td>
+		<td><%= link_to video.title, video %></td><br>
 	<%end %>
 <%end %>
 <br><br>
@@ -16,6 +16,14 @@
 	<%end %>
 <%end %>
 <br><br>
+
+<h2>Favorites</h2>
+<% @user.favorites.reverse.each do |video| %>
+	<td><%= link_to video.title, video %></td><br>
+	<%end %>
+<br><br>
+
+
 
 <% if @user == current_user %>
 	<%= link_to "Edit User", edit_user_registration_path, :class => 'h2' %>
