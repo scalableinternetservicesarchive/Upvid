@@ -35,6 +35,6 @@
 </div>
 
 <% @video.comments.reverse.each do |comment| %>
-<b><%= comment.user.email %></b><br>
+<b><%= comment.user.email %> at <%= comment.created_at.inspect %></b><br>
   <%= comment.message %><br><br>
 <%end %>
