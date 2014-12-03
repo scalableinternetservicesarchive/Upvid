@@ -1,19 +1,6 @@
 
-
-<p>
-  <strong>User:</strong>
-  <%= @video.user.email %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @video.title %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @video.category %>
-</p>
+  <h1><%= @video.title %></h1>
+  <p><strong><%= link_to @video.user.email, @video.user %></strong></p>
 
 <video src=<%= stream_path(@video) %> controls width = 500></video>
 <br>
@@ -31,13 +18,17 @@
 <% end %>
 
 <div>
+    <% if current_user %>
     <%= render 'comments/form', :locals => {:video => @video}%>
+    <% else %>
+    <h3>Log in to comment.</h3>
+    <% end %>
 </div>
 
 <% @video.comments.reverse.each do |comment| %>
 
-  <% t = Time.now - comment.created_at 
-     mm, ss = t.divmod(60)
+  <% delta = Time.now - comment.created_at 
+     mm, ss = delta.divmod(60)
      hh, mm = mm.divmod(60)
      dd, hh = hh.divmod(24)
 
@@ -47,21 +38,21 @@
      month = day * 30.4368499
      year = month * 12
 
-     if (t < minute)
-      s = "%d seconds ago" % [ss]
-     elsif (t < 2 * minute)
+     if (delta < minute)
+      s = "just now"
+     elsif (delta < 2 * minute)
       s = "a minute ago"
-     elsif (t < 60 * minute)
+     elsif (delta < 60 * minute)
       s = "%d minutes ago" % [mm]
-     elsif (t < 2 * hour)
+     elsif (delta < 2 * hour)
       s = "an hour ago"
-     elsif (t < 24 * hour)
+     elsif (delta < 24 * hour)
       s = "%d hours ago" % [hh]
-     elsif (t < 48 * hour)
+     elsif (delta < 48 * hour)
       s = "yesterday"
-     elsif (t < month)
+     elsif (delta < month)
       s = "%d days ago"
-     elsif (t < 12 * month)
+     elsif (delta < 12 * month)
       if (month > 1)
         s = "%d months ago" % months
       else
@@ -76,6 +67,6 @@
      end
   %>
 
-  <b><%= comment.user.email %> <%= s %></b><br>
+  <b><%= link_to comment.user.email, comment.user %> <%= s %></b><br>
     <%= comment.message %><br><br>
 <%end %>
