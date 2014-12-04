@@ -9,8 +9,8 @@
 <%end %>
 <br><br>
 
-<h2>Last comments</h2>
-<% @comments.reverse.each do |comment| %>
+<h2>Last 10 comments</h2>
+<% @comments.reverse.first(10).each do |comment| %>
 	<%if comment.user == @user%>
 		<td><%= @user.email %> commented "<%= comment.message %>" on the movie <%= link_to comment.video.title, comment.video %> </td><br>
 	<%end %>
@@ -26,5 +26,5 @@
 
 
 <% if @user == current_user %>
-	<%= link_to "Edit User", edit_user_registration_path, :class => 'h2' %>
+	<%= link_to "Edit User", edit_user_registration_path, :class => 'btn btn-default' %>
 <% end %>

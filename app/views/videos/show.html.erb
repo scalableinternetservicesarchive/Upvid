@@ -1,6 +1,7 @@
 
   <h1><%= @video.title %></h1>
   <p><strong><%= link_to @video.user.email, @video.user %></strong></p>
+  <p>Favorites: <%= @video.favorited_by.size %></p>
 
 <video src=<%= stream_path(@video) %> controls width = 500></video>
 <br>
