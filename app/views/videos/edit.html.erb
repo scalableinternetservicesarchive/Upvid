@@ -24,9 +24,12 @@
       <span class="input-group-addon">Category</span>
       <%= f.text_field :category, :class => "form-control", :placeholder => "Action", :style => "width: 200px;" %>
   </div>
+
+  <br>
+
+  <div class="actions">
+    <%= f.submit "Update", :class => "btn btn-submit"%>
+    <%= link_to 'Back to video', @video, :class => "btn btn-default" %>
+    <%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+  </div>
 <% end %>
-
-<br>
-
-<%= link_to 'Back to video', @video, :class => "btn btn-default" %>
-<%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>

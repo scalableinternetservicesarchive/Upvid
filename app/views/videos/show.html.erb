@@ -10,7 +10,7 @@
 
 <% if current_user %>
   <% if current_user.favorites.include?(@video) %>
-    <%= link_to 'Unfavorite', favorite_video_path(@video, type: "unfavorite"), method: :put, :class => "btn btn-danger" %>
+    <%= link_to 'Unfavorite', favorite_video_path(@video, type: "unfavorite"), method: :put, :class => "btn btn-warning" %>
   <% else %>
     <%= link_to 'Favorite',   favorite_video_path(@video, type: "favorite"), method: :put, :class => "btn btn-warning" %>
   <% end %>
