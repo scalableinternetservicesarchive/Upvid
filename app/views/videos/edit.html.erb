@@ -1,6 +1,32 @@
 <h1>Editing video</h1>
 
-<%= render 'form' %>
+<%= form_for(@video, :html => {:multipart => true}) do |f| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
 
-<%= link_to 'Show', @video %> |
-<%= link_to 'Back', videos_path %>
+      <ul>
+      <% @video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-group">
+      <span class="input-group-addon">Title</span>
+      <%= f.text_field :title, :class => "form-control", :placeholder => "Shawshank Redemption", :style => "width: 230px;" %>
+  </div>
+
+  <br>
+
+  <div class="input-group">
+      <span class="input-group-addon">Category</span>
+      <%= f.text_field :category, :class => "form-control", :placeholder => "Action", :style => "width: 200px;" %>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to 'Back to video', @video, :class => "btn btn-default" %>
+<%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>

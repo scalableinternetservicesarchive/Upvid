@@ -5,8 +5,7 @@
 <video src=<%= stream_path(@video) %> controls width = 500></video>
 <br>
 <%if @video.user == current_user%>
-  <td><%= link_to 'Edit', edit_video_path(@video) %></td>
-  <td><%= link_to 'Destroy', @video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= link_to 'Edit', edit_video_path(@video), :class => "btn btn-default" %></td>
 <%end%>
 
 <% if current_user %>
