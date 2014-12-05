@@ -45,7 +45,9 @@ gem 'spring',        group: :development
 
 gem 'multi_json', '1.7.8'
 
-gem "paperclip", "~> 4.2"
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 
 gem 'therubyracer',  platforms: :ruby
+
+gem 'less-rails'
 

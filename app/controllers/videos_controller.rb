@@ -25,13 +25,13 @@ class VideosController < ApplicationController
   # POST /videos
   # POST /videos.json
   def create
-    directory = Rails.root.join('public/videos')
-    puts directory
-    name = params[:upload][:file].original_filename
-    path = File.join(directory, name)
-    File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
+    # directory = Rails.root.join('public/videos')
+    # puts directory
+    # name = params[:upload][:file].original_filename
+    # path = File.join(directory, name)
+    # File.open(path, "wb") { |f| f.write(params[:upload][:file].read) }
 
-    @video = Video.new(video_params.merge(:location => path))
+    @video = Video.new(video_params)
     @video.user = current_user
     respond_to do |format|
       if @video.save
@@ -108,6 +108,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :category)
+      params.require(:video).permit(:title, :category, :videofile)
     end
 end
