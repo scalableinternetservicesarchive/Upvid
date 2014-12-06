@@ -1,2 +1,11 @@
 sudo yum install -y gcc libxml2 libxml2-devel libxslt libxslt-devel
 sudo yum install -y ImageMagick
+sudo yum install -y nginx
+
+
+sudo su
+
+chmod 777 /var/log/nginx
+
+su ec2-user
+

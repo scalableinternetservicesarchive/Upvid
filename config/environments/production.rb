@@ -78,13 +78,11 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     :storage => :s3,
-    :fog_credentials => {
-      :use_iam_profile => true,
-      :provider => 'AWS',
-      :region => 'us-west-2' 
-    },
-    :fog_directory => 'cs290',
-    :path => "Upvid/"
+    :s3_host_name => 's3-us-west-2.amazonaws.com',
+    :s3_credentials => {
+        :bucket => "cs290/Upvid",
+        :access_key_id => "",
+        :secret_access_key => ""
+    }
   }
-
 end
