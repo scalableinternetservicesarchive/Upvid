@@ -1,0 +1,25 @@
+echo '[dag]' | sudo tee --append /etc/yum.repos.d/dag.repo
+echo 'name=Dag RPM Repository for Red Hat Enterprise Linux' | sudo tee --append /etc/yum.repos.d/dag.repo
+echo 'gpgcheck=1' | sudo tee --append /etc/yum.repos.d/dag.repo
+echo 'gpgkey=http://apt.sw.be/RPM-GPG-KEY.dag.txt' | sudo tee --append /etc/yum.repos.d/dag.repo
+echo 'enabled=1' | sudo tee --append /etc/yum.repos.d/dag.repo
+echo 'includepkgs=ffmpeg ffmpeg-* faac a52dec x264 opencore-amr lame librtmp schroedinger libva dirac orc' | sudo tee --append /etc/yum.repos.d/dag.repo
+
+
+echo '[centos]' | sudo tee --append /etc/yum.repos.d/centos.repo
+echo 'name=CentOS-6 – Base' | sudo tee --append /etc/yum.repos.d/centos.repo
+echo 'gpgcheck=1' | sudo tee --append /etc/yum.repos.d/centos.repo
+echo 'gpgkey=http://mirror.centos.org/centos/RPM-GPG-KEY-CentOS-6' | sudo tee --append /etc/yum.repos.d/centos.repo
+echo 'enabled=1' | sudo tee --append /etc/yum.repos.d/centos.repo
+echo 'priority=1' | sudo tee --append /etc/yum.repos.d/centos.repo
+echo 'protect=1' | sudo tee --append /etc/yum.repos.d/centos.repo
+echo 'includepkgs=SDL libtheora gsm libdc1394 libdrm liboil mesa-dri-drivers mesa-dri1-drivers mesa-dri-filesystem libraw1394 libpciaccess cppunit' | sudo tee --append /etc/yum.repos.d/centos.repo
+
+
+sudo yum -y install ffmpeg
+
+
+
+
+
+
