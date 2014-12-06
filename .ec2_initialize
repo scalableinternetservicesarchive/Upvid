@@ -17,8 +17,7 @@ echo 'priority=1' | sudo tee --append /etc/yum.repos.d/centos.repo
 echo 'protect=1' | sudo tee --append /etc/yum.repos.d/centos.repo
 echo 'includepkgs=SDL libtheora gsm libdc1394 libdrm liboil mesa-dri-drivers mesa-dri1-drivers mesa-dri-filesystem libraw1394 libpciaccess cppunit' | sudo tee --append /etc/yum.repos.d/centos.repo
 
-sudo rpm -Uhv http://apt.sw.be/redhat/el5/en/x86_64/rpmforge/RPMS//rpmforge-release-0.3.6-1.el5.rf.x86_64.rpm
-
+sudo rpm -Uhv http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 sudo yum -y install ffmpeg
 
 
