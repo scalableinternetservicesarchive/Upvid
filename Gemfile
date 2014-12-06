@@ -51,3 +51,7 @@ gem 'therubyracer',  platforms: :ruby
 
 gem 'less-rails'
 
+gem 'fog'
+
+
+
