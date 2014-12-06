@@ -6,7 +6,7 @@
         <div class="col-sm-6 col-md-4">
           <div class="thumbnail">
           <h3><%= link_to video.title, video %> by <%= link_to video.user.email, video.user %></h3>
-            <%= image_tag video.videofile.url(:thumb)%>
+            <%= image_tag video.videofile.path(:thumb)%>
             <div class="caption">
             </div>
           </div>
