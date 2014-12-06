@@ -69,7 +69,8 @@ class VideosController < ApplicationController
   end
 
   def stream
-    send_file @video.videofile.path,
+    puts @video.videofile
+    send_file @video.videofile.url,
       type: 'video/mp4',
       disposition: 'inline',
       stream: true,

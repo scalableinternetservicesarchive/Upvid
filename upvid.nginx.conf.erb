@@ -61,8 +61,8 @@ http {
   default_type application/octet-stream;
 
   server {
-    listen 8080;
-    listen [::]:8080 default ipv6only=on;
+    listen 3000;
+    listen [::]:3000 default ipv6only=on;
 
     access_log <%= @app_root %>/tmp/access.log;
     error_log <%= @app_root %>/tmp/error.log;
