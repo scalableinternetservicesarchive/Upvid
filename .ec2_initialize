@@ -1,3 +1,5 @@
+sudo yum install -y ImageMagick
+
 echo '[dag]' | sudo tee --append /etc/yum.repos.d/dag.repo
 echo 'name=Dag RPM Repository for Red Hat Enterprise Linux' | sudo tee --append /etc/yum.repos.d/dag.repo
 echo 'baseurl=http://mirror.centos.org/centos/6/os/x86_64/' | sudo tee --append /etc/yum.repos.d/dag.repo
@@ -5,7 +7,6 @@ echo 'gpgcheck=1' | sudo tee --append /etc/yum.repos.d/dag.repo
 echo 'gpgkey=http://apt.sw.be/RPM-GPG-KEY.dag.txt' | sudo tee --append /etc/yum.repos.d/dag.repo
 echo 'enabled=1' | sudo tee --append /etc/yum.repos.d/dag.repo
 echo 'includepkgs=ffmpeg ffmpeg-* faac a52dec x264 opencore-amr lame librtmp schroedinger libva dirac orc' | sudo tee --append /etc/yum.repos.d/dag.repo
-
 
 echo '[centos]' | sudo tee --append /etc/yum.repos.d/centos.repo
 echo 'name=CentOS-6 – Base' | sudo tee --append /etc/yum.repos.d/centos.repo
@@ -18,7 +19,9 @@ echo 'protect=1' | sudo tee --append /etc/yum.repos.d/centos.repo
 echo 'includepkgs=SDL libtheora gsm libdc1394 libdrm liboil mesa-dri-drivers mesa-dri1-drivers mesa-dri-filesystem libraw1394 libpciaccess cppunit' | sudo tee --append /etc/yum.repos.d/centos.repo
 
 sudo rpm -Uhv http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+
 sudo yum -y install ffmpeg
+
 
 
 
