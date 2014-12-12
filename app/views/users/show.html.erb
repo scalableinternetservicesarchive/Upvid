@@ -2,13 +2,11 @@
 
 <h2>Movies</h2>
 
-<% cache do %>
 	<% @videos.each do |video| %>
 		<%if video.user == @user%>
 			<td><%= link_to video.title, video %></td><br>
 		<%end %>
 	<%end %>
-<% end %>
 <br><br>
 
 <h2>Last 10 comments</h2>
