@@ -6,6 +6,7 @@ ra-*.html
 /public/system
 /coverage/
 /spec/tmp
+/videos
 **.orig
 rerun.txt
 pickle-email-*.html
