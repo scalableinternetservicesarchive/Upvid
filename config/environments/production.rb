@@ -81,9 +81,7 @@ Rails.application.configure do
     :storage => :s3,
     :s3_host_name => 's3-us-west-2.amazonaws.com',
     :s3_credentials => {
-        :bucket => "cs290/Upvid",
-        :access_key_id => "",
-        :secret_access_key => ""
+        :bucket => "cs290/Upvid"
     }
   }
 end

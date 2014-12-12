@@ -55,3 +55,4 @@ gem 'fog'
 
 gem 'nokogiri', '1.5.11'
 
+gem "aws-sdk"
