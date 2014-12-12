@@ -12,6 +12,7 @@ class VideosController < ApplicationController
   # GET /videos/1.json
   def show
     @comment = Comment.new
+    @comments = Comment.where(:video_id => params[:id]).paginate(:page => params[:page], :per_page => 15).order('id DESC')
   end
 
   # GET /videos/new
