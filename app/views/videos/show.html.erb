@@ -1,4 +1,4 @@
-
+<% cache do %>
   <h1><%= @video.title %></h1>
   <p><strong><%= link_to @video.user.email, @video.user %></strong></p>
   <p>Favorites: <%= get_favorites %></p>
@@ -8,7 +8,7 @@
 <%if @video.user == current_user%>
   <td><%= link_to 'Edit', edit_video_path(@video), :class => "btn btn-default" %></td>
 <%end%>
-
+<% end %> <!-- cache end -->
 <% if current_user %>
   <% if current_user.favorites.include?(@video) %>
     <%= link_to 'Unfavorite', favorite_video_path(@video, type: "unfavorite"), method: :put, :class => "btn btn-warning" %>
