@@ -1,4 +1,3 @@
-<% cache do %>
   <h1><%= @video.title %></h1>
   <p><strong><%= link_to @video.user.email, @video.user %></strong></p>
   <p>Favorites: <%= get_favorites %></p>
@@ -69,4 +68,3 @@
 
   <b><%= link_to comment.user.email, comment.user %> <%= s %></b><br>
     <%= comment.message %><br><br>
-<%end %>
