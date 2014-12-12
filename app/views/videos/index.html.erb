@@ -1,6 +1,5 @@
 <h2>The most viral videos on the Internet</h2>
 
-  <tbody>
     <% @videos.each do |video| %>
       <div class="column">
         <div class="col-sm-6 col-md-4">
@@ -12,5 +11,4 @@
         </div>
       </div>
   <% end %>
-  </tbody>
-</table>
+<%= will_paginate @videos %>

@@ -58,3 +58,6 @@ gem 'nokogiri', '1.5.11'
 gem "aws-sdk"
 
 gem 'dalli'
+
+gem 'will_paginate'
+
