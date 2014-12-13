@@ -5,7 +5,7 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.paginate(:page => params[:page], :per_page => 50)
+    @videos = Video.paginate_by_sql("select videos.*, (select count(*) from favorite_videos where favorite_videos.video_id = videos.id) as favorite_count from videos ORDER BY favorite_count DESC", :page => params[:page], :per_page => 50)
   end
 
   # GET /videos/1
