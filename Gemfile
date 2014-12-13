@@ -61,3 +61,6 @@ gem 'dalli'
 
 gem 'will_paginate'
 
+gem 'bootstrap-modal-rails'
+
+
