@@ -9,12 +9,17 @@
 	<%end %>
 <br><br>
 
+<%= will_paginate @videos %>
+
+
 <h2>Last 10 comments</h2>
-<% @comments.reverse.first(10).each do |comment| %>
+<% @comments.each do |comment| %>
 	<%if comment.user == @user%>
 		<td><%= @user.email %> commented "<%= comment.message %>" on the movie <%= link_to comment.video.title, comment.video %> </td><br>
 	<%end %>
 <%end %>
+
+
 <br><br>
 
 <h2>Favorites</h2>

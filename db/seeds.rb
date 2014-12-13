@@ -18,14 +18,14 @@
 end
 
 10000.times do |i|
-	Video.create(title: i.to_s, category: "action", user_id: i % 10 + 1)
+	Video.create(title: i.to_s, category: "action", user_id: i % 9 + 1)
 	puts "video", i
 end
 
 
 
-10000.times do |i|
-	Comment.create(message: i.to_s, video_id: i%10, user_id: i % 10 + 1)
+100000.times do |i|
+	Comment.create(message: i.to_s, video_id: i%10 + 1, user_id: i % 10 + 1)
 	puts "comment", i
 end
 

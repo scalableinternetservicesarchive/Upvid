@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@videos = Video.all
-		@comments = Comment.all
+		@videos = Video.where(:user_id => params[:id]).paginate(:page => params[:page], :per_page => 15).order('id DESC')
+		@comments = Comment.where(:user_id => params[:id]).paginate(:page => params[:page], :per_page => 10).order('id DESC')
 	end
 
 end
