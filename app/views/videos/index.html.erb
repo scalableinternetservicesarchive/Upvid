@@ -8,7 +8,7 @@
 
         <div class="video-list-item">
           <a href=<%="/videos/" + video.id.to_s %>>
-            <img src=<%= @video.videofile(:thumb).split("mp4").join("") << "jpg" %> alt="edit" style="z-index: -1" class="thumbnail" />
+            <img src=<%= video.videofile(:thumb).split("%").first %> alt="edit" style="z-index: -1" class="thumbnail" />
           </a>
           <div class="video-title"><%= video.title %></div>
         </div>
