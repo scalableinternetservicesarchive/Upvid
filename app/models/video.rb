@@ -20,7 +20,7 @@ class Video < ActiveRecord::Base
                     :path => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension'
 
   has_attached_file :videofile,
-                    :styles => { :thumb    => '115x115#' },
+                    :styles => { :thumb    => '250x250#' },
                     :url => "video/:id_partition/:style/:id.:content_type_extension",
                     :path => "video/:id_partition/:style/:id.:content_type_extension",
                     :processors =>  [:transcoder, :video_thumbnail ],
