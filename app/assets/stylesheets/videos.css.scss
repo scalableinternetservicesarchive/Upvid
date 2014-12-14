@@ -1,3 +1,20 @@
 // Place all the styles related to the Videos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.video-list-item {
+	width: 100%
+}
+
+.video-title {
+	position: absolute;
+	margin:0;
+	color: white;
+	z-index: 1;
+}
+
+.pagination {
+	
+	display: none !important;
+
+}

@@ -1,9 +1,4 @@
-<h2>The most viral videos on the Internet</h2>
-
-
-<div class="video-list-wrapper">
-
-    <% @videos.each do |video| %>
+<% @videos.each do |video| %>
       <div class="col-md-3">
 
         <div class="video-list-item">
@@ -16,5 +11,4 @@
         </div>
       </div>
     <% end %>
-    <%= will_paginate @videos %>
-</div>
+<%= will_paginate @videos %>
