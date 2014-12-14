@@ -1,9 +1,21 @@
   <% cache do %>
-  <h1><%= @video.title %></h1>
-  <p><strong><%= link_to @video.user.email, @video.user %></strong></p>
-  <p>Favorites: <%= get_favorites %></p>
 
-<video src=<%= stream_path(@video) %> controls width = 500></video>
+  <div class="title">
+    <%= @video.title %>
+  </div>
+
+  <p><strong><%= link_to @video.user.email, @video.user %></strong></p>
+
+  <div class="video-js-box">
+    <video class="video-js vjs-default-skin vjs-big-play-centered"
+    controls preload="auto" width="640" height="360"
+    poster="http://video-js.zencoder.com/oceans-clip.png"
+    data-setup='{"example_option":true}'>
+      <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+      <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+    </video>
+  </div>
+
 <br>
 <%if @video.user == current_user%>
   <td><%= link_to 'Edit', edit_video_path(@video), :class => "btn btn-default" %></td>

@@ -100,12 +100,6 @@ class VideosController < ApplicationController
     end
   end
 
-  def get_favorites
-    set_video
-    @video.favorited_by.size
-  end
-  helper_method :get_favorites
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video

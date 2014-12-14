@@ -24,3 +24,17 @@
 	padding-top: 0px;
 
 }
+
+/* navbar */
+.navbar-default {
+    background-color: #E5E6FF !Important;
+    border-color: #E5E6FF !Important;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+	background-color: transparent !Important;
+}
+
+.footer {
+	background-color: #E5E6FF !Important;
+}

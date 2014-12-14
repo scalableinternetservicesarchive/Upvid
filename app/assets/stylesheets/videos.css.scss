@@ -8,13 +8,55 @@
 
 .video-title {
 	position: absolute;
-	margin:0;
-	color: white;
-	z-index: 1;
+	text-align: center;
+	margin-left: 110px;
+	margin-top: 110px;
+	color: black;
+	z-index: 10;
+	opacity: 0;
 }
 
 .pagination {
 	
 	display: none;
 
+}
+
+.thumbnail {
+	background-color: #E5E6FF !Important;
+}
+
+.thumbnail:hover { 
+	opacity: 0.5; 
+	filter: alpha(opacity=50); 
+
+}
+
+.title {
+	font-size: 40px;
+    position: fixed;
+    margin-top: 70px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.video-js-box {
+	box-shadow: 0px 0px 15px #000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-right: 854px;
+}
+
+.thumbnail:hover .video-title {
+	position: absolute;
+	text-align: center;
+	margin-left: 110px;
+	margin-top: 110px;
+	color: black;
+	z-index: 10;
+	opacity: 1;
 }
