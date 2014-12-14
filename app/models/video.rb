@@ -1,5 +1,6 @@
 class Video < ActiveRecord::Base
 
+  do_not_validate_attachment_file_type :local_videofile
   do_not_validate_attachment_file_type :videofile
 
 
@@ -14,11 +15,43 @@ class Video < ActiveRecord::Base
 	end
 
 
-	has_attached_file :videofile,
+	has_attached_file :local_videofile,
+                    :url => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension',
+                    :path => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension'
+
+  has_attached_file :videofile,
                     :styles => { :thumb    => '115x115#' },
-                    :url => ':class/:attachment/:id_partition/:style/:id.:content_type_extension',
-                    :path => ':class/:attachment/:id_partition/:style/:id.:content_type_extension',
-                    :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }
+                    s3_permissions:  :private,
+                    s3_host_name:    's3-us-west-1.amazonaws.com',
+                    s3_headers:      {'Expires'             => 1.year.from_now.httpdate,
+                                      'Content-Disposition' => 'attachment'},
+                    :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] },
+                     :path => "video/:id/:style/:filename"
+
+
+  after_save :queue_upload_to_s3
+
+
+  def queue_upload_to_s3
+     Rails.logger.debug "inside queue_upload_to_s3\n"*10
+    Delayed::Job.enqueue VideoJob.new(id) if local_videofile? && local_videofile_updated_at_changed?
+  end
+
+
+  def upload_to_s3
+    self.videofile = local_videofile.to_file
+    save!
+  end
+
+  VideoJob = Struct.new(:id) do
+    def perform
+      Rails.logger.debug "inside perform\n"*10
+      video = Video.find(id)
+      video.upload_to_s3
+      videofile.local_videofile.destroy
+    end
+  end
+
 
   def video?
     [ 'application/x-mp4',

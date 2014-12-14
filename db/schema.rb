@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204072652) do
+ActiveRecord::Schema.define(version: 20141212220517) do
 
   create_table "comments", force: true do |t|
     t.text     "message"
@@ -23,6 +23,22 @@ ActiveRecord::Schema.define(version: 20141204072652) do
 
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
   add_index "comments", ["video_id"], name: "index_comments_on_video_id"
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "favorite_videos", force: true do |t|
     t.string   "video_id"
@@ -69,6 +85,10 @@ ActiveRecord::Schema.define(version: 20141204072652) do
     t.string   "videofile_content_type"
     t.integer  "videofile_file_size"
     t.datetime "videofile_updated_at"
+    t.string   "local_videofile_file_name"
+    t.string   "local_videofile_content_type"
+    t.integer  "local_videofile_file_size"
+    t.datetime "local_videofile_updated_at"
   end
 
   add_index "videos", ["user_id"], name: "index_videos_on_user_id"

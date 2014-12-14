@@ -58,7 +58,13 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     commonjs (0.2.7)
+    daemons (1.1.9)
     dalli (2.7.2)
+    delayed_job (4.0.4)
+      activesupport (>= 3.0, < 4.2)
+    delayed_job_active_record (4.0.2)
+      activerecord (>= 3.0, < 4.2)
+      delayed_job (>= 3.0, < 4.1)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -230,7 +236,9 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   coffee-rails (~> 4.0.0)
+  daemons
   dalli
+  delayed_job_active_record
   devise
   fog
   jbuilder (~> 2.0)
