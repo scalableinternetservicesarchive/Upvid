@@ -7,7 +7,7 @@
   <div class="video-js-box">
     <video class="video-js vjs-default-skin vjs-big-play-centered"
     controls preload="auto" width="640" height="360"
-    poster=<%=@video.videofile(:thumb) %>
+    poster=<%= @video.videofile(:thumb).split("mp4").join("") << "jpg" %>
     data-setup='{"example_option":true}'>
       <source src=<%=@video.videofile.url.split("%").first %> type='video/mp4' />
       <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
