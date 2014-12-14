@@ -21,8 +21,9 @@ class Video < ActiveRecord::Base
 
   has_attached_file :videofile,
                     :styles => { :thumb    => '115x115#' },
-                    :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] },
-                    :path => "video/:id/:style/:filename"
+                    :url => "video/:id_partition/:style/:id.:content_type_extension",
+                    :path => "video/:id_partition/:style/:id.:content_type_extension",
+                    :processors =>  [:transcoder, :video_thumbnail ]
 
 
   after_save :queue_upload_to_s3
