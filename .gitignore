@@ -8,6 +8,8 @@ ra-*.html
 /spec/tmp
 /videos
 /system
+*.mp4
+*.jpg
 **.orig
 rerun.txt
 pickle-email-*.html
