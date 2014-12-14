@@ -64,3 +64,5 @@ gem 'will_paginate'
 gem 'delayed_job_active_record'
 
 gem "daemons"
+
+gem 'will_paginate-bootstrap'
