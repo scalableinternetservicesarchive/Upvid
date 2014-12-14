@@ -11,6 +11,7 @@ class VideosController < ApplicationController
   # GET /videos/1
   # GET /videos/1.json
   def show
+    puts @video.videofile.path
     @comment = Comment.new
   end
 

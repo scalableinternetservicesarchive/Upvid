@@ -7,8 +7,8 @@ class Video < ActiveRecord::Base
 	Paperclip.interpolates :content_type_extension  do |attachment, style_name|
   case
     when ((style = attachment.styles[style_name]) && !style[:format].blank?) then style[:format]
-    when attachment.instance.video? && style_name.to_s == 'transcoded' then 'flv'
-    when attachment.instance.video? && style_name.to_s != 'original' then 'jpg'
+    when attachment.instance.video? && style_name.to_s == 'thumb' then 'jpg'
+    when attachment.instance.video? && style_name.to_s != 'thumb' then 'flv' 
   else
     File.extname(attachment.original_filename).gsub(/^\.+/, "")
   end
@@ -30,7 +30,6 @@ class Video < ActiveRecord::Base
 
 
   def queue_upload_to_s3
-    Rails.logger.debug "inside queue_upload_to_s3\n"*10
     Delayed::Job.enqueue VideoJob.new(id) if local_videofile? && local_videofile_updated_at_changed?
   end
 
