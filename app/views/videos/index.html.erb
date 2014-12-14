@@ -14,5 +14,7 @@
         </div>
       </div>
     <% end %>
-    <%= will_paginate @videos %>
+    <div class="paginate_vids">
+    <%= will_paginate @videos, renderer: BootstrapPagination::Rails %>
+    </div>
 </div>

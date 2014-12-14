@@ -63,4 +63,4 @@ gem 'will_paginate'
 
 gem 'bootstrap-modal-rails'
 
-
+gem 'will_paginate-bootstrap'
