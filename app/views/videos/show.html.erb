@@ -4,8 +4,6 @@
     <%= @video.title %>
   </div>
 
-  <p><strong><%= link_to @video.user.email, @video.user %></strong></p>
-
   <div class="video-js-box">
     <video class="video-js vjs-default-skin vjs-big-play-centered"
     controls preload="auto" width="640" height="360"
@@ -16,7 +14,9 @@
     </video>
   </div>
 
-<br>
+  <p class="userlink_video">Uploaded by <strong><%= link_to @video.user.email, @video.user %></strong></p>
+
+<div class="fav_btn">
 <%if @video.user == current_user%>
   <td><%= link_to 'Edit', edit_video_path(@video), :class => "btn btn-default" %></td>
 <%end%>
@@ -28,7 +28,9 @@
     <%= link_to 'Favorite',   favorite_video_path(@video, type: "favorite"), method: :put, :class => "btn btn-warning" %>
   <% end %>
 <% end %>
+</div>
 
+<div class="comments">
 <div>
     <% if current_user %>
     <%= render 'comments/form', :locals => {:video => @video}%>
@@ -83,5 +85,8 @@
     <%= comment.message %><br><br>
   <% end %>
 
+<ul class="pagination">
   <%= will_paginate @comments %>
+</ul>
 
+</div>

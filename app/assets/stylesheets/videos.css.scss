@@ -17,9 +17,7 @@
 }
 
 .pagination {
-	
 	display: none;
-
 }
 
 .thumbnail {
@@ -30,6 +28,28 @@
 	opacity: 0.5; 
 	filter: alpha(opacity=50); 
 
+}
+
+.userlink_video {
+	font-size: 15px;
+	position: fixed;
+    margin-top: 480px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.fav_btn {
+	font-size: 15px;
+	position: fixed;
+    margin-top: 520px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);	
+}
+
+.comments {
+	margin-left: -50px;
 }
 
 .title {
