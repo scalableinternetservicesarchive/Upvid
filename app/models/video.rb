@@ -21,25 +21,21 @@ class Video < ActiveRecord::Base
 
   has_attached_file :videofile,
                     :styles => { :thumb    => '115x115#' },
-                    s3_permissions:  :private,
-                    s3_host_name:    's3-us-west-1.amazonaws.com',
-                    s3_headers:      {'Expires'             => 1.year.from_now.httpdate,
-                                      'Content-Disposition' => 'attachment'},
                     :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] },
-                     :path => "video/:id/:style/:filename"
+                    :path => "video/:id/:style/:filename"
 
 
   after_save :queue_upload_to_s3
 
 
   def queue_upload_to_s3
-     Rails.logger.debug "inside queue_upload_to_s3\n"*10
+    Rails.logger.debug "inside queue_upload_to_s3\n"*10
     Delayed::Job.enqueue VideoJob.new(id) if local_videofile? && local_videofile_updated_at_changed?
   end
 
 
   def upload_to_s3
-    self.videofile = local_videofile.to_file
+    self.videofile = Paperclip.io_adapters.for(local_videofile)
     save!
   end
 
@@ -48,7 +44,7 @@ class Video < ActiveRecord::Base
       Rails.logger.debug "inside perform\n"*10
       video = Video.find(id)
       video.upload_to_s3
-      videofile.local_videofile.destroy
+      video.local_videofile.destroy
     end
   end
 
@@ -90,7 +86,7 @@ class Video < ActiveRecord::Base
       'video/parityfec',
       'video/pointer',
       'video/raw',
-      'video/rtx' ].include?(videofile.content_type)
+      'video/rtx' ].include?(local_videofile.content_type)
   end
 
 
