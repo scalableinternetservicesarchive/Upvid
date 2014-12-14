@@ -23,6 +23,7 @@ class Video < ActiveRecord::Base
                     :styles => { :thumb    => '250x250#' },
                     :url => "video/:id_partition/:style/:id.:content_type_extension",
                     :path => "video/:id_partition/:style/:id.:content_type_extension",
+                    :default_url => "assets/images/missing.png",
                     :processors =>  [:transcoder, :video_thumbnail ],
                     :storage => :s3,
                     :s3_host_name => 's3-us-west-2.amazonaws.com',
