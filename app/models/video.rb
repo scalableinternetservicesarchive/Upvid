@@ -23,7 +23,12 @@ class Video < ActiveRecord::Base
                     :styles => { :thumb    => '115x115#' },
                     :url => "video/:id_partition/:style/:id.:content_type_extension",
                     :path => "video/:id_partition/:style/:id.:content_type_extension",
-                    :processors =>  [:transcoder, :video_thumbnail ]
+                    :processors =>  [:transcoder, :video_thumbnail ],
+                    :storage => :s3,
+                    :s3_host_name => 's3-us-west-2.amazonaws.com',
+                    :s3_credentials => {
+                        :bucket => "cs290/Upvid"
+                    }
 
 
   after_save :queue_upload_to_s3

@@ -37,11 +37,15 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+  config.serve_static_assets  = true
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.autoload_paths += %W(#{Rails.root}/lib/paperclip_processors)
+
+
+
   
 end
