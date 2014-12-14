@@ -1,24 +1,58 @@
 class Video < ActiveRecord::Base
 
+  do_not_validate_attachment_file_type :local_videofile
   do_not_validate_attachment_file_type :videofile
 
 
 	Paperclip.interpolates :content_type_extension  do |attachment, style_name|
   case
     when ((style = attachment.styles[style_name]) && !style[:format].blank?) then style[:format]
-    when attachment.instance.video? && style_name.to_s == 'transcoded' then 'flv'
-    when attachment.instance.video? && style_name.to_s != 'original' then 'jpg'
+    when attachment.instance.video? && style_name.to_s == 'thumb' then 'jpg'
+    when attachment.instance.video? && style_name.to_s != 'thumb' then 'flv' 
   else
     File.extname(attachment.original_filename).gsub(/^\.+/, "")
   end
 	end
 
 
-	has_attached_file :videofile,
+	has_attached_file :local_videofile,
+                    :url => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension',
+                    :path => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension'
+
+  has_attached_file :videofile,
                     :styles => { :thumb    => '115x115#' },
-                    :url => ':class/:attachment/:id_partition/:style/:id.:content_type_extension',
-                    :path => ':class/:attachment/:id_partition/:style/:id.:content_type_extension',
-                    :processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }
+                    :url => "video/:id_partition/:style/:id.:content_type_extension",
+                    :path => "video/:id_partition/:style/:id.:content_type_extension",
+                    :processors =>  [:transcoder, :video_thumbnail ],
+                    :storage => :s3,
+                    :s3_host_name => 's3-us-west-2.amazonaws.com',
+                    :s3_credentials => {
+                        :bucket => "cs290/Upvid"
+                    }
+
+
+  after_save :queue_upload_to_s3
+
+
+  def queue_upload_to_s3
+    Delayed::Job.enqueue VideoJob.new(id) if local_videofile? && local_videofile_updated_at_changed?
+  end
+
+
+  def upload_to_s3
+    self.videofile = Paperclip.io_adapters.for(local_videofile)
+    save!
+  end
+
+  VideoJob = Struct.new(:id) do
+    def perform
+      Rails.logger.debug "inside perform\n"*10
+      video = Video.find(id)
+      video.upload_to_s3
+      video.local_videofile.destroy
+    end
+  end
+
 
   def video?
     [ 'application/x-mp4',
@@ -57,7 +91,7 @@ class Video < ActiveRecord::Base
       'video/parityfec',
       'video/pointer',
       'video/raw',
-      'video/rtx' ].include?(videofile.content_type)
+      'video/rtx' ].include?(local_videofile.content_type)
   end
 
 

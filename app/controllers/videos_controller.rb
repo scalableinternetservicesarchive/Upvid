@@ -14,6 +14,7 @@ class VideosController < ApplicationController
   # GET /videos/1
   # GET /videos/1.json
   def show
+    puts "xxx:" + @video.videofile.url
     @comment = Comment.new
     @comments = Comment.where(:video_id => params[:id]).paginate(:page => params[:page], :per_page => 15).order('id DESC')
   end
@@ -74,7 +75,6 @@ class VideosController < ApplicationController
   end
 
   def stream
-    puts @video.videofile
     send_file @video.videofile.url,
       type: 'video/mp4',
       disposition: 'inline',
@@ -108,6 +108,6 @@ class VideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
-      params.require(:video).permit(:title, :category, :videofile)
+      params.require(:video).permit(:title, :category, :videofile, :local_videofile)
     end
 end

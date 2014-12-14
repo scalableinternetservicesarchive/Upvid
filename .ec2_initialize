@@ -23,6 +23,8 @@ sudo rpm -Uhv http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-
 sudo yum -y install ffmpeg
 
 
+cd app; ./bin/delayed_jobs
+
 
 
 
