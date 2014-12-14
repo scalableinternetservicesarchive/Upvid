@@ -11,7 +11,7 @@ module Paperclip
     def make
       dst = Tempfile.new([ @basename, 'flv' ].compact.join("."))
       dst.binmode
-      cmd = %Q[-i #{File.expand_path(file.path)} -ar 22050 -crf 28 #{File.expand_path(dst.path) + ".flv"} ]
+      cmd = %Q[-i #{File.expand_path(file.path)} -vcodec libx264 -vpre medium #{File.expand_path(dst.path) + ".flv"} ]
       puts cmd
       begin
         success = Paperclip.run('ffmpeg', cmd)
