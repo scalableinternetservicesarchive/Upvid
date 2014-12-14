@@ -16,18 +16,17 @@
       <%= f.text_field :title, :class => "form-control", :placeholder => "Shawshank Redemption", :style => "width: 230px;" %>
   </div>
 
-  <br>
+    <div class="input-group">
+        <span class="input-group-addon">Category</span>
+        <%= f.text_field :category, :class => "form-control", :placeholder => "Action", :style => "width: 200px;" %>
+    </div>
+    <br>
+    <div class="field">
+      <%= f.file_field :local_videofile%>
+    </div>
 
-  <div class="input-group">
-      <span class="input-group-addon">Category</span>
-      <%= f.text_field :category, :class => "form-control", :placeholder => "Action", :style => "width: 200px;" %>
-  </div>
-  <br>
-  <div class="field">
-    <%= f.file_field :videofile%>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Upload", :class => "btn btn-submit"%>
-  </div>
+    <div class="actions">
+      <%= f.submit "Upload", :class => "btn btn-submit"%>
+    </div>
+  <% end %>
 <% end %>

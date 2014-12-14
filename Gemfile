@@ -61,6 +61,6 @@ gem 'dalli'
 
 gem 'will_paginate'
 
-gem 'bootstrap-modal-rails'
+gem 'delayed_job_active_record'
 
-
+gem "daemons"

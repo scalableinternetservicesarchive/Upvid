@@ -84,4 +84,5 @@ Rails.application.configure do
         :bucket => "cs290/Upvid"
     }
   }
+
 end

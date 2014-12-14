@@ -6,7 +6,7 @@ module Paperclip
     def initialize(file, options = {}, attachment = nil)
       super
       puts "IN INITALIZE IN PROCESSOR"*10
-      @time_offset = options[:time_offset] || '10'
+      @time_offset = options[:time_offset] || '-4'
       unless options[:geometry].nil? || (@geometry = Geometry.parse(options[:geometry])).nil?
         @geometry.width = (@geometry.width / 2.0).floor * 2.0
         @geometry.height = (@geometry.height / 2.0).floor * 2.0
@@ -20,7 +20,7 @@ module Paperclip
       dst = Tempfile.new([ @basename, 'jpg' ].compact.join("."))
       dst.binmode
 
-      cmd = %Q[-itsoffset #{time_offset} -i "#{File.expand_path(file.path)}" -y -vcodec mjpeg -vframes 1 -an -f rawvideo ]
+      cmd = %Q[-itsoffset #{time_offset} -i "#{File.expand_path(file.path) + ".flv"}" -y -vcodec mjpeg -vframes 1 -an -f rawvideo ]
       cmd << "-s #{geometry.to_s} " unless geometry.nil?
       cmd << %Q["#{File.expand_path(dst.path)}"]
       puts cmd
