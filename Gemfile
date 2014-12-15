@@ -66,3 +66,6 @@ gem 'delayed_job_active_record'
 gem "daemons"
 
 gem 'will_paginate-bootstrap'
+
+gem "paperclip_database", "~> 2.0"
+

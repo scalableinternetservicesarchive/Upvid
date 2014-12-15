@@ -5,7 +5,7 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.paginate_by_sql("select videos.*, (select count(*) from favorite_videos where favorite_videos.video_id = videos.id) as favorite_count from videos ORDER BY favorite_count DESC", :page => params[:page], :per_page => 40)
+    @videos = Video.paginate_by_sql("select videos.*, (select count(*) from favorite_videos where favorite_videos.video_id = videos.id) as favorite_count from videos ORDER BY favorite_count DESC", :page => params[:page], :per_page => 16)
     if request.xhr?
       render :partial=>"video_list"
     end
@@ -14,7 +14,6 @@ class VideosController < ApplicationController
   # GET /videos/1
   # GET /videos/1.json
   def show
-    puts "xxx:" + @video.videofile.url
     @comment = Comment.new
     @comments = Comment.where(:video_id => params[:id]).paginate(:page => params[:page], :per_page => 15).order('id DESC')
   end

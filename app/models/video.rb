@@ -16,8 +16,8 @@ class Video < ActiveRecord::Base
 
 
 	has_attached_file :local_videofile,
-                    :url => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension',
-                    :path => ':rails_root/public/system/:attachment/:id/:style/:basename.:extension'
+                    :storage => :database
+
 
   has_attached_file :videofile,
                     :styles => { :thumb    => '250x250#' },
@@ -36,7 +36,7 @@ class Video < ActiveRecord::Base
 
 
   def queue_upload_to_s3
-    Delayed::Job.enqueue VideoJob.new(id) if local_videofile? && local_videofile_updated_at_changed?
+    Delayed::Job.enqueue VideoJob.new(id) if local_videofile? 
   end
 
 
